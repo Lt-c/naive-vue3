@@ -27,14 +27,12 @@ export function wrapperEnv(envOptions) {
     rst[key] = val
   }
   return rst
-
 }
-
 
 /* 获取代理 */
 export function createProxy(list = []) {
   // 传入代理，为数组
-  const rst = {};
+  const rst = {}
   for (const [prefix, target] of list) {
     // 自动结构 api 和 代理路径
     const isHttps = httpsReg.test(target)
@@ -44,7 +42,7 @@ export function createProxy(list = []) {
       changeOrigin: true,
       ws: true,
       rewrite: (path) => path.replace(new RegExp(`^${prefix}`), ''),
-      ...(isHttps ? { secure: false } : {})/* 如果是https则 secure设置为false */
+      ...(isHttps ? { secure: false } : {}) /* 如果是https则 secure设置为false */,
     }
   }
   return rst

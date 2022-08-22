@@ -2,11 +2,12 @@
   "name": "wen-naive-admin",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue .",
+    "lint:fix": "eslint --fix --ext .js,.vue ."
   },
   "dependencies": {
     "vue": "^3.2.37"
@@ -16,6 +17,11 @@
     "@unocss/preset-icons": "^0.45.9",
     "@unocss/preset-uno": "^0.45.9",
     "@vitejs/plugin-vue": "^3.0.3",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.3.0",
+    "prettier": "^2.7.1",
     "rollup-plugin-visualizer": "^5.8.0",
     "sass": "^1.54.5",
     "unocss": "^0.45.9",
