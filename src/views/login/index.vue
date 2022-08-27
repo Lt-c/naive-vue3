@@ -33,10 +33,11 @@ const handleLogin = async () => {
     const res = await login({ name, password: password.toString() })
     if (res.code === 0) {
       $naive.message.success('登录成功')
+      // console.log(res.data.token)
       setToken(res.data.token)
       // 保存账号密码到本地
       if (isRemember.value) {
-        lStorage.setToken('loginInfo', { name, password })
+        lStorage.set('loginInfo', { name, password })
       } else {
         lStorage.remove('loginInfo')
       }
