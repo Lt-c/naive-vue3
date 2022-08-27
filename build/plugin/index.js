@@ -11,13 +11,29 @@ import { configHtmlPlugin } from './html'
 /* unocss */
 import { unocss } from './unocss'
 
+/* 
+  组件库按需引入
+ */
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+
+/* 导入mock */
+import { configMockPlugin } from './mock'
+
 export function createVitePlugin(viteEnv, isBuild) {
   const plugins = [
     vue(),
     vueSetupExtend() /* script中支持name */,
     configHtmlPlugin(viteEnv, isBuild) /* 修改index.html文件的，使其可以使用变量 */,
     unocss() /* unocss */,
+    Components({
+      /* 自动按需引入 */ resolvers: [NaiveUiResolver()],
+    }),
   ]
+  // 是否开启mock
+  if (viteEnv?.VITE_APP_USE_MOCK) {
+    plugins.push(configMockPlugin(isBuild))
+  }
   // 打包分析插件
   if (isBuild) {
     plugins.push(

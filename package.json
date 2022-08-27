@@ -10,7 +10,10 @@
     "lint:fix": "eslint --fix --ext .js,.vue ."
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "axios": "^0.27.2",
+    "pinia": "^2.0.20",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.4"
   },
   "devDependencies": {
     "@unocss/preset-attributify": "^0.45.9",
@@ -21,12 +24,16 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
+    "mockjs": "^1.1.0",
+    "naive-ui": "^2.32.2",
     "prettier": "^2.7.1",
     "rollup-plugin-visualizer": "^5.8.0",
     "sass": "^1.54.5",
     "unocss": "^0.45.9",
+    "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.7",
     "vite-plugin-html": "^3.2.0",
+    "vite-plugin-mock": "^2.9.6",
     "vite-plugin-vue-setup-extend": "^0.4.0"
   }
 }
