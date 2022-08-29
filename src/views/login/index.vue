@@ -1,38 +1,40 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, unref } from 'vue'
 import { lStorage } from '@/utils/cache'
 import { login } from '@/api/auth'
 import { setToken } from '@/utils/token'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const title = import.meta.env.VITE_APP_TITLE
+// 路由的数据
+const query = unref(router.currentRoute).query
+// console.log(router.currentRoute)
 
 const userInfo = reactive({
   name: 'admin',
   password: '12345',
 })
 
-iniLoginInfo()
 /* 判断本地是否保存有登陆信息 */
-function iniLoginInfo() {
-  const localLoginInfo = lStorage.get('loginInfo')
-  if (localLoginInfo) {
-    userInfo.name = localLoginInfo.name || ''
-    userInfo.password = localLoginInfo.password || ''
-  }
+const localLoginInfo = lStorage.get('loginInfo')
+if (localLoginInfo) {
+  userInfo.name = localLoginInfo.name || ''
+  userInfo.password = localLoginInfo.password || ''
 }
+
 // 记住密码
 const isRemember = ref(false)
 const handleLogin = async () => {
   const { name, password } = userInfo
   if (!name || !password) {
-    $naive.message.warning('请用户输入账户和密码')
+    $message.warning('请用户输入账户和密码')
     return
   }
   try {
+    $message.loading('正在验证...')
     const res = await login({ name, password: password.toString() })
     if (res.code === 0) {
-      $naive.message.success('登录成功')
+      $message.success('登录成功')
       // console.log(res.data.token)
       setToken(res.data.token)
       // 保存账号密码到本地
@@ -43,12 +45,18 @@ const handleLogin = async () => {
       }
 
       // 跳转到首页
-      router.push({ path: '/' })
+      if (query.redirect) {
+        const path = query.redirect
+        Reflect.deleteProperty(query, 'redirect')
+        router.push({ path, query })
+      } else {
+        router.push('/')
+      }
     } else {
-      $naive.message.warning(res.message)
+      $message.warning(res.message)
     }
   } catch (error) {
-    $naive.message.warning(error.message)
+    $message.error(error.message)
   }
 }
 </script>

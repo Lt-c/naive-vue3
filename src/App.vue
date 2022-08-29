@@ -13,7 +13,6 @@ import AppProvider from '@/components/AppProvider/index.vue'
 <style lang="scss">
 #app {
   height: 100%;
-
   .n-config-provider {
     height: inherit;
   }

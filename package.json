@@ -16,10 +16,12 @@
     "vue-router": "^4.1.4"
   },
   "devDependencies": {
+    "@iconify/json": "^2.1.99",
     "@unocss/preset-attributify": "^0.45.9",
     "@unocss/preset-icons": "^0.45.9",
     "@unocss/preset-uno": "^0.45.9",
     "@vitejs/plugin-vue": "^3.0.3",
+    "@vue/compiler-sfc": "^3.2.37",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -30,6 +32,7 @@
     "rollup-plugin-visualizer": "^5.8.0",
     "sass": "^1.54.5",
     "unocss": "^0.45.9",
+    "unplugin-icons": "^0.14.8",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.7",
     "vite-plugin-html": "^3.2.0",

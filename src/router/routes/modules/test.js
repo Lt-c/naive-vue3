@@ -1,29 +1,46 @@
+import LAYOUT from '@/layout/index.vue'
+
 export default [
   {
-    name: 'Page1',
-    path: '/page1',
-    component: () => import('@/views/test-page/page1/index.vue'),
+    name: 'Example',
+    path: '/example',
+    redirect: '/example/table',
+    component: LAYOUT,
     meta: {
-      title: '动态路由1',
+      title: '组件示例',
       role: ['admin'],
     },
-  },
-  {
-    name: 'Page2',
-    path: '/page2',
-    component: () => import('@/views/test-page/page2/index.vue'),
-    meta: {
-      title: '动态路由2',
-      role: ['editor'],
-    },
-  },
-  {
-    name: 'Page3',
-    path: '/page3',
-    component: () => import('@/views/test-page/page3/index.vue'),
-    meta: {
-      title: '动态路由3',
-      role: ['admin'],
-    },
+    children: [
+      {
+        name: 'Table',
+        path: 'table',
+        component: () => import('@/views/examples/table/index.vue'),
+        redirect: '/example/table/post',
+        meta: {
+          title: '表格',
+          role: ['admin'],
+        },
+        children: [
+          {
+            name: 'PostList',
+            path: 'post',
+            component: () => import('@/views/examples/table/post/index.vue'),
+            meta: {
+              title: '文章列表',
+              role: ['admin'],
+            },
+          },
+          {
+            name: 'PostCreate',
+            path: 'post-create',
+            component: () => import('@/views/examples/table/post/PostCreate.vue'),
+            meta: {
+              title: '创建文章',
+              role: ['admin'],
+            },
+          },
+        ],
+      },
+    ],
   },
 ]

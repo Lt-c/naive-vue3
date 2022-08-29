@@ -7,6 +7,7 @@
     <n-gradient-text text-16 mt-10 type="info">我有这些页面的权限：</n-gradient-text>
 
     <ul mt-10>
+      <i btn i-material-symbols-music-video-outline-sharp></i>
       <li
         v-for="item in permissionStore.menus"
         :key="item.name"
@@ -23,14 +24,14 @@
 </template>
 
 <script setup>
-import { usePermissionStore } from '../../store/modules/permission'
-import { useUserStore } from '../../store/modules/user'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useUserStore } from '@/store/modules/user'
 
 const permissionStore = usePermissionStore()
 const userStore = useUserStore()
 
 function logout() {
   userStore.logout()
-  $naive.message.success('已退出登录')
+  $message.success('已退出登录')
 }
 </script>

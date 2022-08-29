@@ -1,3 +1,5 @@
+import LAYOUT from '@/layout/index.vue'
+
 export const basicRoutes = [
   {
     name: '404',
@@ -17,19 +19,57 @@ export const basicRoutes = [
   {
     name: 'Dashboard',
     path: '/',
-    component: () => import('@/views/dashboard/index.vue'),
+    component: LAYOUT,
+    redirect: '/home',
     meta: {
       title: 'Dashboard',
     },
+    children: [
+      {
+        name: 'Home',
+        path: 'home',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: {
+          title: '首页',
+        },
+      },
+    ],
   },
-
   {
-    name: 'TestUnocss',
-    path: '/test/unocss',
-    component: () => import('@/views/test-page/unocss/index.vue'),
+    name: 'Test',
+    path: '/test',
+    component: LAYOUT,
+    redirect: '/test/unocss',
     meta: {
-      title: '测试unocss',
+      title: '基础功能测试',
     },
+    children: [
+      {
+        name: 'Unocss',
+        path: 'unocss',
+        component: () => import('@/views/test-page/unocss/index.vue'),
+        meta: {
+          title: '测试unocss',
+        },
+      },
+      {
+        name: 'Message',
+        path: 'message',
+        component: () => import('@/views/test-page/message/index.vue'),
+        meta: {
+          title: '测试Message',
+        },
+      },
+      {
+        name: 'TestKeepAlive',
+        path: 'keep-alive',
+        component: () => import('@/views/test-page/keep-alive/index.vue'),
+        meta: {
+          title: '测试Keep-Alive',
+          keepAlive: true,
+        },
+      },
+    ],
   },
 ]
 // 没有权限进行访问会跳转到404

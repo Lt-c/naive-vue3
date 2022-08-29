@@ -39,9 +39,11 @@ export const usePermissionStore = defineStore('permission', {
     }
   },
   getters: {
+    /* 可以访问的routes列表 */
     routes() {
       return basicRoutes.concat(this.accessRoutes)
     },
+    /* 不需要现在在菜单中的按钮 */
     menus() {
       return this.routes.filter((route) => route.name && !route.isHidden)
     },

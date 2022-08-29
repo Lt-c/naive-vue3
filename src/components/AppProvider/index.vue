@@ -1,44 +1,26 @@
 <script setup>
-import { defineComponent, h } from 'vue'
-import { useLoadingBar, useDialog, useMessage, useNotification } from 'naive-ui'
-/* 想在全局中使用这些提示组件，使用一种特殊的方式，将其挂载到window上 */
-function setupNativeTools() {
-  window.$naive = {
-    loadingBar: useLoadingBar(),
-    dialog: useDialog(),
-    message: useMessage(),
-    notification: useNotification(),
-  }
-}
-const NaiveProviderContent = defineComponent({
-  setup() {
-    setupNativeTools()
-  },
-  render() {
-    return h('div')
-  },
-})
+import { useThemeStore } from '@/store/modules/theme'
+import DialogContent from './useDialogContent'
+import LoadingBar from './useLoadingBar'
+import MessageContent from './useMessageContent'
+import Notification from './useNotification'
 
-const themeOverrides = {
-  common: {
-    primaryColor: '#316C72FF',
-    primaryColorHover: '#316C72E3',
-    primaryColorPressed: '#2B4C59FF',
-    primaryColorSuppl: '#316C7263',
-  },
-}
+const useTheme = useThemeStore()
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <n-config-provider :theme-overrides="useTheme.naiveThemeOverrides">
     <n-loading-bar-provider>
+      <LoadingBar />
       <n-dialog-provider>
-        <n-notification-provider>
-          <n-message-provider>
+        <DialogContent />
+        <n-message-provider>
+          <MessageContent />
+          <n-notification-provider>
+            <Notification />
             <slot></slot>
-            <NaiveProviderContent />
-          </n-message-provider>
-        </n-notification-provider>
+          </n-notification-provider>
+        </n-message-provider>
       </n-dialog-provider>
     </n-loading-bar-provider>
   </n-config-provider>
