@@ -5,7 +5,7 @@ export const useAppStore = defineStore('app', {
   state() {
     return {
       reloadFlag: true,
-      collapsed: true /* 折叠 */,
+      collapsed: false /* 折叠 */,
     }
   },
   actions: {

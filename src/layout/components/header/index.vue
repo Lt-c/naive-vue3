@@ -4,30 +4,12 @@ import BreadCrumb from './components/BreadCrumb.vue' /* 面包屑 */
 </script>
 
 <template>
-  <header class="header">
-    <div class="h-left">
-      <MenuCollaose />
-      <BreadCrumb />
-      <div>left</div>
-    </div>
-    <div class="h-right">
-      <div>right</div>
-    </div>
-  </header>
+  <div flex items-center>
+    <MenuCollaose ml-8 />
+    <BreadCrumb ml-10 />
+    <div>left</div>
+  </div>
+  <div ml-auto flex items-center>
+    <div>right</div>
+  </div>
 </template>
-
-<style lang="scss" scoped>
-.header {
-  height: 100%;
-  padding: 0 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .h-left,
-  .h-right {
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

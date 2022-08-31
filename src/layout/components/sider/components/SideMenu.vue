@@ -3,6 +3,8 @@ import { useRouter } from 'vue-router'
 import { computed } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useAppStore } from '@/store/modules/app'
+import { renderIcon } from '@/utils/icon'
+import { IconDefault } from '@/components/AppIcons'
 
 import { isExternal } from '@/utils/is'
 
@@ -11,7 +13,6 @@ const router = useRouter()
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const { currentRoute } = router
-console.log(currentRoute)
 const menuOptions = computed(() => {
   return permissionStore.menus.map((item) => getMenuItem(item))
 })
@@ -21,7 +22,7 @@ const getMenuItem = (route, basePath = '') => {
   let menuItem = {
     label: (route.meta && route.meta.title) || route.name /* 用户名称 */,
     key: route.name,
-    // icon: renderIcon(FishIcon),
+    icon: route.meta?.icon ? renderIcon(route.meta?.icon, { size: 18 }) : renderIcon(IconDefault, { size: 12 }),
     // children
     path: resolvePath(basePath, route.path),
   }
@@ -37,7 +38,9 @@ const getMenuItem = (route, basePath = '') => {
     menuItem = {
       label: (singleRoute.meta && singleRoute.meta.title) || singleRoute.name /* 用户名称 */,
       key: singleRoute.name,
-      // icon: renderIcon(FishIcon),
+      icon: singleRoute.meta?.icon
+        ? renderIcon(singleRoute.meta?.icon, { size: 16 })
+        : renderIcon(IconDefault, { size: 12 }),
       // children
       path: resolvePath(basePath, singleRoute.path),
     }
@@ -54,7 +57,7 @@ const getMenuItem = (route, basePath = '') => {
   }
   return menuItem
 }
-
+/* 处理按钮路径 */
 const resolvePath = (basePath, path) => {
   /* 判断是否为外链 */
   if (isExternal(path)) return path
@@ -66,7 +69,7 @@ const resolvePath = (basePath, path) => {
       .join('/')
   )
 }
-
+/* 点击事件 */
 const handleMenuSelect = (key, item) => {
   /* 外链 则打开新标签 */
   if (isExternal(item.path)) {
@@ -85,16 +88,27 @@ const handleMenuSelect = (key, item) => {
   <n-menu
     class="side-menu"
     accordion
-    :indent="12"
-    :root-indent="12"
+    :indent="18"
+    :root-indent="18"
+    :collapsed-width="64"
     :options="menuOptions"
     :value="(currentRoute.meta && currentRoute.meta.activeMenu) || currentRoute.name"
     @update:value="handleMenuSelect"
   />
 </template>
 <style lang="scss">
-.n-menu {
-  margin-top: 10px;
-  margin-left: 10px;
+.side-menu:not(.n-menu--collapsed) {
+  .n-menu-item-content {
+    &::before {
+      left: 5px;
+      right: 5px;
+    }
+    &.n-menu-item-content--selected,
+    &:hover {
+      &::before {
+        border-left: 4px solid $primaryColor;
+      }
+    }
+  }
 }
 </style>

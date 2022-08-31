@@ -19,7 +19,7 @@ const appStore = useAppStore()
       <AppSider />
     </n-layout-sider>
     <n-layout>
-      <n-layout-header>
+      <n-layout-header flex items-center>
         <AppHeader></AppHeader>
       </n-layout-header>
       <n-layout-content content-style="padding: 24px;">

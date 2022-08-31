@@ -35,7 +35,7 @@ export function createVitePlugin(viteEnv, isBuild) {
     Components({
       /* 自动按需引入 */ resolvers: [NaiveUiResolver()],
     }),
-    Icons({ compiler: 'vue3', autoInstall: true }),
+    Icons({ compiler: 'vue3', autoInstall: true, scale: 1, defaultClass: 'inline-block' }),
   ]
   // 是否开启mock
   viteEnv?.VITE_APP_USE_MOCK && plugins.push(configMockPlugin(isBuild))

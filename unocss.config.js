@@ -1,7 +1,9 @@
 import { defineConfig, presetAttributify, presetIcons, presetUno, presetWebFonts } from 'unocss'
 
 export default defineConfig({
+  exclude: ['node_modules', '.git', '.github', '.husky', '.vscode', 'build', 'dist', 'mock', 'public', './stats.html'],
   shortcuts: [
+    ['f-c-c', 'flex justify-center items-center'],
     [
       'btn',
       'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50',
@@ -14,32 +16,30 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify(),
-    presetIcons({
+    /*     presetIcons({
       scale: 1.2,
       warn: true,
-    }),
-    presetWebFonts({
+    }), */
+    /*     presetWebFonts({
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',
         mono: 'DM Mono',
       },
-    }),
+    }), */
   ],
   rules: [
-    [
-      'f-c-c' /* 居中对齐无论，默认为横向，竖向需要添加flex-row */,
-      {
-        display: 'flex',
-        'align-items': 'center',
-        'justify-content': 'center',
-      },
-    ],
     [
       'card-shadow' /* 边框阴影 */,
       {
         'box-shadow': '0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017',
       },
     ],
+    [/^bc-(.+)$/, ([, color]) => ({ 'border-color': `#${color}` })],
   ],
+  theme: {
+    colors: {
+      primary: 'var(--primary-color)',
+    },
+  },
 })
