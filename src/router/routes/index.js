@@ -1,5 +1,4 @@
 import LAYOUT from '@/layout/index.vue'
-import { IconMenuHome } from '@/components/AppIcons'
 
 export const basicRoutes = [
   {
@@ -32,7 +31,7 @@ export const basicRoutes = [
         component: () => import('@/views/dashboard/index.vue'),
         meta: {
           title: '首页',
-          icon: IconMenuHome,
+          icon: 'mdi:home',
         },
       },
     ],

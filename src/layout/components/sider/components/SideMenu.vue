@@ -22,7 +22,7 @@ const getMenuItem = (route, basePath = '') => {
   let menuItem = {
     label: (route.meta && route.meta.title) || route.name /* 用户名称 */,
     key: route.name,
-    icon: route.meta?.icon ? renderIcon(route.meta?.icon, { size: 18 }) : renderIcon(IconDefault, { size: 12 }),
+    icon: route.meta?.icon ? renderIcon(route.meta?.icon, { size: 18 }) : renderIcon('mdi:airplane', { size: 12 }),
     // children
     path: resolvePath(basePath, route.path),
   }
@@ -40,7 +40,7 @@ const getMenuItem = (route, basePath = '') => {
       key: singleRoute.name,
       icon: singleRoute.meta?.icon
         ? renderIcon(singleRoute.meta?.icon, { size: 16 })
-        : renderIcon(IconDefault, { size: 12 }),
+        : renderIcon('mdi:airplane', { size: 12 }),
       // children
       path: resolvePath(basePath, singleRoute.path),
     }

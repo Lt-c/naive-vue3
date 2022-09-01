@@ -2,8 +2,11 @@
 import AppHeader from './components/header/index.vue'
 import AppSider from './components/sider/index.vue'
 import AppMain from './components/AppMain.vue'
+import AppTags from './components/tags/index.vue'
 import { useAppStore } from '@/store/modules/app'
+import { useThemeStore } from '@/store/modules/theme'
 const appStore = useAppStore()
+const themeStore = useThemeStore()
 </script>
 
 <template>
@@ -19,10 +22,21 @@ const appStore = useAppStore()
       <AppSider />
     </n-layout-sider>
     <n-layout>
-      <n-layout-header flex items-center>
-        <AppHeader></AppHeader>
+      <n-layout-header
+        bg-white
+        px-15
+        border-b
+        bc-eee
+        flex
+        items-center
+        :style="`height: ${themeStore.header.height}px`"
+      >
+        <AppHeader />
       </n-layout-header>
-      <n-layout-content content-style="padding: 24px;">
+      <section v-if="themeStore.tags.visible">
+        <AppTags :style="{ height: `${themeStore.tags.height}px` }" />
+      </section>
+      <n-layout-content content-style="padding: 24px;" border-b bc-eee>
         <AppMain></AppMain>
       </n-layout-content>
       <n-layout-footer>成府路</n-layout-footer>

@@ -16,6 +16,7 @@ import Unocss from 'unocss/vite'
   https://icones.js.org/
 */
 import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 /* 
   组件库按需引入
@@ -33,7 +34,10 @@ export function createVitePlugin(viteEnv, isBuild) {
     configHtmlPlugin(viteEnv, isBuild) /* 修改index.html文件的，使其可以使用变量 */,
     Unocss() /* unocss */,
     Components({
-      /* 自动按需引入 */ resolvers: [NaiveUiResolver()],
+      /* 自动按需引入 */ resolvers: [
+        NaiveUiResolver(),
+        IconsResolver({ customCollections: ['custom'], componentPrefix: 'icon' }) /* 前缀为icon的自动使用图标 */,
+      ],
     }),
     Icons({ compiler: 'vue3', autoInstall: true, scale: 1, defaultClass: 'inline-block' }),
   ]

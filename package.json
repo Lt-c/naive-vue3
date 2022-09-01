@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.1.99",
+    "@iconify/vue": "^3.2.1",
     "@unocss/preset-attributify": "^0.45.9",
     "@unocss/preset-icons": "^0.45.9",
     "@unocss/preset-uno": "^0.45.9",
