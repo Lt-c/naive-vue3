@@ -4,15 +4,14 @@ import { computed } from 'vue'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useAppStore } from '@/store/modules/app'
 import { renderIcon } from '@/utils/icon'
-import { IconDefault } from '@/components/AppIcons'
 
 import { isExternal } from '@/utils/is'
 
 const router = useRouter()
+const { currentRoute } = router
 
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
-const { currentRoute } = router
 const menuOptions = computed(() => {
   return permissionStore.menus.map((item) => getMenuItem(item))
 })
@@ -22,7 +21,7 @@ const getMenuItem = (route, basePath = '') => {
   let menuItem = {
     label: (route.meta && route.meta.title) || route.name /* 用户名称 */,
     key: route.name,
-    icon: route.meta?.icon ? renderIcon(route.meta?.icon, { size: 18 }) : renderIcon('mdi:airplane', { size: 12 }),
+    icon: route.meta?.icon ? renderIcon(route.meta?.icon, { size: 18 }) : renderIcon('', { size: 12 }),
     // children
     path: resolvePath(basePath, route.path),
   }
@@ -38,9 +37,7 @@ const getMenuItem = (route, basePath = '') => {
     menuItem = {
       label: (singleRoute.meta && singleRoute.meta.title) || singleRoute.name /* 用户名称 */,
       key: singleRoute.name,
-      icon: singleRoute.meta?.icon
-        ? renderIcon(singleRoute.meta?.icon, { size: 16 })
-        : renderIcon('mdi:airplane', { size: 12 }),
+      icon: singleRoute.meta?.icon ? renderIcon(singleRoute.meta?.icon, { size: 16 }) : renderIcon('', { size: 12 }),
       // children
       path: resolvePath(basePath, singleRoute.path),
     }

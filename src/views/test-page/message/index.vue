@@ -1,10 +1,13 @@
 <template>
-  <div p24>
-    <n-button type="primary" @click="handleLogin">点击登陆</n-button>
-  </div>
+  <CommonPage showFooter>
+    <div p24>
+      <n-button type="primary" @click="handleLogin">点击登陆</n-button>
+    </div>
+  </CommonPage>
 </template>
 
 <script setup>
+// import CommonPage from '@/components/page/CommonPage.vue';
 function handleLogin() {
   $message.loading('登陆中...')
   setTimeout(() => {

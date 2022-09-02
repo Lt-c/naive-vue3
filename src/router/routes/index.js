@@ -74,7 +74,7 @@ export const basicRoutes = [
   },
 ]
 // 没有权限进行访问会跳转到404
-export const NOT_FONUD_ROUTE = {
+export const NOT_FOUND_ROUTE = {
   name: 'NotFound',
   path: '/:pathMatch(.*)*',
   redirect: '/404',
@@ -83,6 +83,7 @@ export const NOT_FONUD_ROUTE = {
 
 // modules路径下的路由都作为动态路由
 const modules = import.meta.globEager('./modules/*.js')
+// const modules = import.meta.glob('@/views/**/route.js', { eager: true }) // 可在views文件中配置自定义的路由
 const asyncRoutes = []
 Object.keys(modules).forEach((key) => {
   asyncRoutes.push(...modules[key].default)

@@ -27,7 +27,6 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:show'])
 
-
 /* 选项*/
 const options = computed(() => [
   {
@@ -58,7 +57,7 @@ const options = computed(() => [
     label: '关闭右侧',
     key: 'close-right',
     disabled: tagsStore.tags.length <= 1 || props.path === tagsStore.tags[tagsStore.tags.length - 1].path,
-    icon: renderIcon('mdi:reload', { size: 14 }),
+    icon: renderIcon('', { size: 14 }),
   },
 ])
 /* 可选行为项 */

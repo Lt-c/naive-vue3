@@ -9,7 +9,7 @@ const useTheme = useThemeStore()
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="useTheme.naiveThemeOverrides">
+  <n-config-provider h-full w-full :theme-overrides="useTheme.naiveThemeOverrides">
     <n-loading-bar-provider>
       <LoadingBar />
       <n-dialog-provider>

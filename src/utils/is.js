@@ -90,7 +90,7 @@ export function isNullOrUndef(val) {
 
 /*为null或者undefined或者为 '' */
 export function isNullOrWhitespace(val) {
-  return isNullOrUndef(val) || isWhitespace(val)
+  return isNullOrUndef(val) || isWhiteSpace(val)
 }
 
 /* 为empty */

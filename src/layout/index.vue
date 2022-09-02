@@ -10,7 +10,7 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <n-layout has-sider h-full>
+  <n-layout has-sider h-full w-full>
     <n-layout-sider
       bordered
       collapse-mode="width"
@@ -21,26 +21,18 @@ const themeStore = useThemeStore()
     >
       <AppSider />
     </n-layout-sider>
-    <n-layout>
-      <n-layout-header
-        bg-white
-        px-15
-        border-b
-        bc-eee
-        flex
-        items-center
-        :style="`height: ${themeStore.header.height}px`"
-      >
+
+    <article flex-1 flex-col overflow-hidden>
+      <header bg-white px-15 border-b bc-eee flex items-center :style="`height: ${themeStore.header.height}px`">
         <AppHeader />
-      </n-layout-header>
-      <section v-if="themeStore.tags.visible">
+      </header>
+      <section v-if="themeStore.tags.visible" border-b bc-eee>
         <AppTags :style="{ height: `${themeStore.tags.height}px` }" />
       </section>
-      <n-layout-content content-style="padding: 24px;" border-b bc-eee>
-        <AppMain></AppMain>
-      </n-layout-content>
-      <n-layout-footer>成府路</n-layout-footer>
-    </n-layout>
+      <section flex-1 overflow-hidden>
+        <AppMain />
+      </section>
+    </article>
   </n-layout>
 </template>
 
